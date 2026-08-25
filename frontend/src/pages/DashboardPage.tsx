@@ -229,7 +229,9 @@ export const DashboardPage: React.FC = () => {
                 <XAxis dataKey="day" stroke="#64748B" fontSize={12} />
                 <YAxis stroke="#64748B" fontSize={12} tickFormatter={(v) => `₹${v / 1000}k`} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#12141D', borderColor: '#1E2333', borderRadius: '8px', fontSize: '12px' }}
+                  contentStyle={{ backgroundColor: '#12141D', borderColor: '#1E2333', borderRadius: '8px', fontSize: '12px', color: '#F8FAFC' }}
+                  itemStyle={{ color: '#F8FAFC' }}
+                  labelStyle={{ color: '#F8FAFC' }}
                   formatter={(val: any) => [`₹${Number(val).toLocaleString('en-IN')}`, '']}
                 />
                 <Area type="monotone" dataKey="atRisk" name="Revenue at Risk" stroke="#EF4444" fillOpacity={1} fill="url(#colorRisk)" />
@@ -263,7 +265,10 @@ export const DashboardPage: React.FC = () => {
                   ))}
                 </Pie>
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#12141D', borderColor: '#1E2333', borderRadius: '8px', fontSize: '12px' }}
+                  contentStyle={{ backgroundColor: '#12141D', borderColor: '#1E2333', borderRadius: '8px', fontSize: '12px', color: '#F8FAFC' }}
+                  itemStyle={{ color: '#F8FAFC' }}
+                  labelStyle={{ color: '#F8FAFC' }}
+                  formatter={(value: any, name: any) => [`${value} transactions`, String(name).replace(/_/g, ' ')]}
                 />
               </PieChart>
             </ResponsiveContainer>
