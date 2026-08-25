@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-slate-100 font-sans antialiased selection:bg-amber-500/30 selection:text-amber-200;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090A0F;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1E2333;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
+
+/* Custom Glass & Border Utilities */
+.fintech-card {
+  @apply bg-surface border border-border rounded-xl p-5 shadow-lg shadow-black/40 hover:border-amber-500/30 transition-all duration-200;
+}
+
+.fintech-badge {
+  @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium tracking-wide border;
+}
+
+.badge-success {
+  @apply bg-emerald-500/10 text-emerald-400 border-emerald-500/20;
+}
+
+.badge-warning {
+  @apply bg-amber-500/10 text-amber-400 border-amber-500/20;
+}
+
+.badge-danger {
+  @apply bg-rose-500/10 text-rose-400 border-rose-500/20;
+}
+
+.badge-blue {
+  @apply bg-blue-500/10 text-blue-400 border-blue-500/20;
+}

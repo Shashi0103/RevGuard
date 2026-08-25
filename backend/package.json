@@ -1,0 +1,30 @@
+{
+  "name": "revguard-backend",
+  "version": "1.0.0",
+  "description": "RevGuard AI Revenue Recovery Agent Backend API",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "prisma:generate": "node prisma/configure-db-provider.js && prisma generate",
+    "prisma:migrate": "node prisma/configure-db-provider.js && prisma migrate dev --name init",
+    "db:push": "node prisma/configure-db-provider.js && prisma db push",
+    "db:seed": "node prisma/configure-db-provider.js && prisma generate && prisma db push && ts-node prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.9.0",
+    "prisma": "^5.22.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.6.3"
+  }
+}
