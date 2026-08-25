@@ -87,29 +87,7 @@ Open `http://localhost:5173` in your browser.
 
 ---
 
-## 4. Tech Stack
-
-- **Frontend:** React 18, Vite, TypeScript, Tailwind CSS, Lucide React, Recharts
-- **Backend API:** Node.js, Express, TypeScript, Prisma ORM
-- **AI Microservice:** Python 3.13, FastAPI, Uvicorn, scikit-learn, Pydantic
-- **Database:** Prisma ORM supporting SQLite (default local zero-config) and Neon PostgreSQL (cloud hosted)
-- **Payment Abstraction:** `PaymentProvider` (`DemoPaymentProvider` + `RazorpayProvider` Test Mode)
-
----
-
-## 5. Deterministic Guardrail Safety Engine
-
-RevGuard NEVER allows an AI or LLM model to directly move money without deterministic safety boundary checks:
-
-1. **High-Value Threshold Rule (> ₹10,000):** Transactions above ₹10,000 are **BLOCKED** from automatic execution and held for Human Operator review.
-2. **Payment Retry Limit Rule (≤ 1 attempt):** Automatic retries are capped at 1 attempt (`retryCount >= 1` ➔ BLOCKED) to prevent gateway rate-limiting or double-charging.
-3. **AI Confidence Floor (< 80%):** Transactions with AI confidence below 80% automatically escalate to human operators.
-4. **Fraud / Suspicious Activity Check:** Transactions flagged with suspicious risk halt automated recovery immediately.
-5. **Customer Reminder Cap (≤ 2 attempts):** Automated customer reminders stop after 2 attempts to avoid spamming customers.
-
----
-
-## 6. Cloud Database & Payment Provider Configuration (Optional)
+## 4. Cloud Database & Payment Provider Configuration (Optional)
 
 ### Neon PostgreSQL Setup
 To connect a hosted Neon PostgreSQL database:
@@ -132,6 +110,28 @@ To integrate Razorpay Test Mode API credentials:
    RAZORPAY_KEY_ID="rzp_test_..."
    RAZORPAY_KEY_SECRET="..."
    ```
+
+---
+
+## 5. Tech Stack
+
+- **Frontend:** React 18, Vite, TypeScript, Tailwind CSS, Lucide React, Recharts
+- **Backend API:** Node.js, Express, TypeScript, Prisma ORM
+- **AI Microservice:** Python 3.13, FastAPI, Uvicorn, scikit-learn, Pydantic
+- **Database:** Prisma ORM supporting SQLite (default local zero-config) and Neon PostgreSQL (cloud hosted)
+- **Payment Abstraction:** `PaymentProvider` (`DemoPaymentProvider` + `RazorpayProvider` Test Mode)
+
+---
+
+## 6. Deterministic Guardrail Safety Engine
+
+RevGuard NEVER allows an AI or LLM model to directly move money without deterministic safety boundary checks:
+
+1. **High-Value Threshold Rule (> ₹10,000):** Transactions above ₹10,000 are **BLOCKED** from automatic execution and held for Human Operator review.
+2. **Payment Retry Limit Rule (≤ 1 attempt):** Automatic retries are capped at 1 attempt (`retryCount >= 1` ➔ BLOCKED) to prevent gateway rate-limiting or double-charging.
+3. **AI Confidence Floor (< 80%):** Transactions with AI confidence below 80% automatically escalate to human operators.
+4. **Fraud / Suspicious Activity Check:** Transactions flagged with suspicious risk halt automated recovery immediately.
+5. **Customer Reminder Cap (≤ 2 attempts):** Automated customer reminders stop after 2 attempts to avoid spamming customers.
 
 ---
 
