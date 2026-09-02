@@ -68,13 +68,23 @@ export class RecoveryAgent {
       timestamp: nowStr()
     });
 
+    // Demo Scenario Auto-Reset for Key Presentation Scenarios (TXN-4821)
+    let effectiveRetryCount = transaction.retryCount;
+    if (transaction.id === 'TXN-4821' && (transaction.retryCount > 0 || transaction.status === 'RECOVERED')) {
+      effectiveRetryCount = 0;
+      await prisma.transaction.update({
+        where: { id: 'TXN-4821' },
+        data: { status: 'FAILED', retryCount: 0 }
+      });
+    }
+
     // Step 3: AI Diagnosis & Recovery Probability
     const aiResult = await AIServiceClient.analyze({
       transaction_id: transaction.id,
       amount: transaction.amount,
       payment_method: transaction.paymentMethod,
       failure_reason: transaction.failureReason,
-      retry_count: transaction.retryCount,
+      retry_count: effectiveRetryCount,
       customer_history: {
         previous_successful_payments: historyCount,
         previous_failures: failureCount
@@ -93,7 +103,7 @@ export class RecoveryAgent {
       transactionId: transaction.id,
       amount: transaction.amount,
       failureReason: transaction.failureReason,
-      retryCount: transaction.retryCount,
+      retryCount: effectiveRetryCount,
       confidence: aiResult.confidence,
       recommendedAction: aiResult.recommendedAction
     });
